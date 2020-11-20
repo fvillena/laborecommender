@@ -27,7 +27,7 @@ def mean_average_precision(y_true,y_pred):
 
 mean_average_precision_scorer = sklearn.metrics.make_scorer(mean_average_precision)
 
-def cross_val_score(estimator, X, scoring, cv=5):
+def cross_val_score(estimator, X, scoring, cv=5, n=5):
     kf = sklearn.model_selection.KFold(n_splits=cv)
     scores = []
     for train_i, test_i in kf.split(X):
@@ -42,11 +42,11 @@ def cross_val_score(estimator, X, scoring, cv=5):
         test_x = test_x[:len(train)]
         test_y = test_y[:len(train)]
         estimator.fit(train)
-        predicted = estimator.predict(test_x)
+        predicted = estimator.predict(test_x,n=n)
         scores.append(scoring(test_y,predicted))
     return scores
 
-def grid_search(param_grid,estimator,X,scorer):
+def grid_search(param_grid,estimator,X,scorer,n=5):
     results = {
         "params":[],
         "raw_results":[],
@@ -55,7 +55,7 @@ def grid_search(param_grid,estimator,X,scorer):
     for params in sklearn.model_selection.ParameterGrid(param_grid):
         current_estimator = estimator.set_params(**params)
         results["params"].append(params)
-        current_results = cross_val_score(current_estimator,X,scorer)
+        current_results = cross_val_score(current_estimator,X,scorer,n=n)
         results["raw_results"].append(current_results)
         results["mean_results"].append(statistics.mean(current_results))
         best_i = np.argmax(results["mean_results"])

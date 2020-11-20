@@ -34,7 +34,7 @@ class LaboRecommender():
         self.bags_ = np.array(bags)
         self.tests_ = self.pipe["transformer"].feature_names # pylint: disable=no-member
         return self
-    def predict(self, bags, n=10):
+    def predict(self, bags, n=5):
         self.n=n
         recommended_bag_ids = self.pipe.predict(bags)
         recommendations = []
