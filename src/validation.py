@@ -3,12 +3,23 @@ import sklearn.metrics
 import sklearn.model_selection
 from . import data
 import numpy as np
-def precision(true,predicted):
+
+def confusion_matrix(true,predicted):
     recommendations_that_are_relevant = [test for test in predicted if test in true]
     n_items_we_recommend = len(predicted)
     n_of_our_recommendations_that_are_relevant = len(recommendations_that_are_relevant)
+    n_of_all_the_possible_relevant_items = len(true)
+    return (n_items_we_recommend,n_of_our_recommendations_that_are_relevant,n_of_all_the_possible_relevant_items)
+
+def precision(true,predicted):
+    n_items_we_recommend,n_of_our_recommendations_that_are_relevant,n_of_all_the_possible_relevant_items = confusion_matrix(true,predicted)
     p = n_of_our_recommendations_that_are_relevant / n_items_we_recommend
     return p
+def recall(true,predicted):
+    n_items_we_recommend,n_of_our_recommendations_that_are_relevant,n_of_all_the_possible_relevant_items = confusion_matrix(true,predicted)
+    r = n_of_our_recommendations_that_are_relevant / n_of_all_the_possible_relevant_items
+    return r
+
 def average_precision(true,predicted):
     precisions = []
     for k in range(1,len(predicted)+1):
