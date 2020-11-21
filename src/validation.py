@@ -12,11 +12,11 @@ def confusion_matrix(true,predicted):
     return (n_items_we_recommend,n_of_our_recommendations_that_are_relevant,n_of_all_the_possible_relevant_items)
 
 def precision(true,predicted):
-    n_items_we_recommend,n_of_our_recommendations_that_are_relevant,n_of_all_the_possible_relevant_items = confusion_matrix(true,predicted)
+    n_items_we_recommend,n_of_our_recommendations_that_are_relevant,_ = confusion_matrix(true,predicted)
     p = n_of_our_recommendations_that_are_relevant / n_items_we_recommend
     return p
 def recall(true,predicted):
-    n_items_we_recommend,n_of_our_recommendations_that_are_relevant,n_of_all_the_possible_relevant_items = confusion_matrix(true,predicted)
+    _,n_of_our_recommendations_that_are_relevant,n_of_all_the_possible_relevant_items = confusion_matrix(true,predicted)
     r = n_of_our_recommendations_that_are_relevant / n_of_all_the_possible_relevant_items
     return r
 
