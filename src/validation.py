@@ -47,6 +47,15 @@ def mean_average_recall(true,predicted):
         return average_metric(true,predicted,recall)
     return mean_average_metric(true,predicted,average_recall)
 
+def mean_average_f_beta(true,predicted,beta):
+    p = mean_average_precision(true,predicted)
+    r = mean_average_recall(true,predicted)
+    b2 = beta ** 2
+    return ( 1 + b2 ) * ( ( p * r ) / ( ( b2 * p ) + r ) )
+
+def mean_average_f_1(true,predicted):
+    return mean_average_f_beta(true,predicted,1)
+
 def cross_val_score(estimator, X, scoring, cv=5, n=5):
     kf = sklearn.model_selection.KFold(n_splits=cv)
     scores = []
