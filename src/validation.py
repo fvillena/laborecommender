@@ -20,23 +20,32 @@ def recall(true,predicted):
     r = n_of_our_recommendations_that_are_relevant / n_of_all_the_possible_relevant_items
     return r
 
-def average_precision(true,predicted):
-    precisions = []
+def average_metric(true,predicted,metric):
+    metrics = []
     for k in range(1,len(predicted)+1):
         predicted_k = predicted[:k]
-        p = precision(true,predicted_k)      
-        precisions.append(p)
+        p = metric(true,predicted_k)      
+        metrics.append(p)
     try:
-        return statistics.mean(precisions)
+        return statistics.mean(metrics)
     except statistics.StatisticsError:
         return 0.0
-def mean_average_precision(y_true,y_pred):
-    average_precisions = []
-    for t,p in zip(y_true,y_pred):
-        average_precisions.append(average_precision(t,p))
-    return statistics.mean(average_precisions)
 
-mean_average_precision_scorer = sklearn.metrics.make_scorer(mean_average_precision)
+def mean_average_metric(y_true,y_pred,metric):
+    average_metrics = []
+    for t,p in zip(y_true,y_pred):
+        average_metrics.append(average_metric(t,p,metric))
+    return statistics.mean(average_metrics)
+
+def mean_average_precision(true,predicted):
+    def average_precision(true,predicted):
+        return average_metric(true,predicted,precision)
+    return mean_average_metric(true,predicted,average_precision)
+
+def mean_average_recall(true,predicted):
+    def average_recall(true,predicted):
+        return average_metric(true,predicted,recall)
+    return mean_average_metric(true,predicted,average_recall)
 
 def cross_val_score(estimator, X, scoring, cv=5, n=5):
     kf = sklearn.model_selection.KFold(n_splits=cv)
