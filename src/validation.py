@@ -75,7 +75,7 @@ def cross_val_score(estimator, X, scoring, cv=5, n=5):
         scores.append(scoring(test_y,predicted))
     return scores
 
-def grid_search(param_grid,estimator,X,scorer,n=5):
+def grid_search(param_grid,estimator,X,scorer,n=5,cv=5):
     results = {
         "params":[],
         "raw_results":[],
@@ -84,7 +84,7 @@ def grid_search(param_grid,estimator,X,scorer,n=5):
     for params in sklearn.model_selection.ParameterGrid(param_grid):
         current_estimator = estimator.set_params(**params)
         results["params"].append(params)
-        current_results = cross_val_score(current_estimator,X,scorer,n=n)
+        current_results = cross_val_score(current_estimator,X,scorer,n=n,cv=cv)
         results["raw_results"].append(current_results)
         results["mean_results"].append(statistics.mean(current_results))
         best_i = np.argmax(results["mean_results"])
