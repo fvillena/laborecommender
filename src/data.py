@@ -24,3 +24,12 @@ def cut_bag(bag):
         x.append(current_x)
         y.append(current_y)
     return (x,y)
+
+def make_supervised_dataset(bags):
+    test_bags_x = []
+    test_bags_y = []
+    for bag in bags:
+        x,y = cut_bag(bag)
+        test_bags_x.extend(x)
+        test_bags_y.extend(y)
+    return (test_bags_x,test_bags_y)
