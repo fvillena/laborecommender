@@ -10,10 +10,6 @@ Welcome to SphinxDemo's documentation!
    :maxdepth: 3
    :caption: Contents:
 
-   modules
-
-
-
 Indices and tables
 ==================
 

@@ -1,8 +1,13 @@
 laborecommender package
 =======================
 
-Submodules
-----------
+Module contents
+---------------
+
+.. automodule:: laborecommender
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 laborecommender.data module
 ---------------------------
@@ -32,15 +37,6 @@ laborecommender.validation module
 ---------------------------------
 
 .. automodule:: laborecommender.validation
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
-Module contents
----------------
-
-.. automodule:: laborecommender
    :members:
    :undoc-members:
    :show-inheritance:
