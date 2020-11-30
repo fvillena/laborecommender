@@ -7,6 +7,29 @@ import collections
 import itertools
 
 class NearestBags(sklearn.base.BaseEstimator, sklearn.base.ClassifierMixin):
+    """
+    Unsupervised learner for implementing neighbor bags searches.
+
+    Perform neighbor searches within a list of laboratory test bags
+    this class wraps `sklearn.neighbors.NearestNeighbors` class.
+
+    Parameters
+    ----------
+    k : int, default=10
+        Number of neighbors to use by default for queries.
+    metric : str, default='jaccard'
+        the distance metric to use for the tree.
+
+    Examples
+    --------
+    >>> import laborecommender.data
+    >>> import laborecommender.model
+    >>> bags = laborecommender.data.get_bags_from_mimic()
+    >>> nb = laborecommender.model.NearestBags()
+    >>> nb.fit(bags)
+    >>> nb.predict(bags[0])
+
+    """
     def __init__(self, k = 10, metric="jaccard"):
         self.k = k
         self.metric = metric
