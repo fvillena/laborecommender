@@ -1,4 +1,4 @@
-import src.model
+import laborecommender.model
 import json
 import os
 
@@ -11,7 +11,7 @@ with open(os.path.join(project_dir,"data/interim/test_bags_x.json")) as j:
 with open(os.path.join(project_dir,"data/interim/test_bags_y.json")) as j:
     test_bags_y = json.load(j)
 
-labo_recommender = src.model.LaboRecommender()
+labo_recommender = laborecommender.model.LaboRecommender()
 labo_recommender.fit(train_bags)
 
 print(labo_recommender.predict(test_bags_x))
