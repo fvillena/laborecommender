@@ -1,18 +1,18 @@
-import src.data
-import src.features
+import laborecommender.data
+import laborecommender.features
 import sklearn.model_selection
 import json
 import os
 
 project_dir= os.path.dirname(os.path.realpath(__file__))
 
-bags = src.data.get_bags_from_mimic()
+bags = laborecommender.data.get_bags_from_mimic()
 train_bags, test_bags = sklearn.model_selection.train_test_split(bags)
 
 test_bags_x = []
 test_bags_y = []
 for bag in test_bags:
-    x,y = src.data.cut_bag(bag)
+    x,y = laborecommender.data.cut_bag(bag)
     test_bags_x.extend(x)
     test_bags_y.extend(y)
 

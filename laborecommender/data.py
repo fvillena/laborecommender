@@ -13,9 +13,9 @@ def get_bags_from_mimic(
 
     Parameters
     ----------
-    labevents : str, default 'https://github.com/fvillena/matbio/blob/master/data/LABEVENTS.csv?raw=true'
+    labevents : str
         URL for the csv of the `LABEVENTS` MIMIC table
-    d_labitems : str, default 'https://raw.githubusercontent.com/fvillena/matbio/master/data/D_LABITEMS.csv'
+    d_labitems : str
         URL for the csv of the `D_LABEVENTS` MIMIC table
     
     Returns
