@@ -4,7 +4,8 @@ def get_bags_from_mimic(
     labevents: str = "https://github.com/fvillena/matbio/blob/master/data/LABEVENTS.csv?raw=true", 
     d_labitems: str = "https://raw.githubusercontent.com/fvillena/matbio/master/data/D_LABITEMS.csv"
     ) -> list:
-    """Constructs a list of laboratory test bags from mimic tables.
+    """
+    Constructs a list of laboratory test bags from mimic tables.
 
     From the MIMIC tables `LABEVENTS` and `D_LABEVENTS` this function creates a list
     of bags of laboratory test (namely laboratory tests that are requested at the 
@@ -12,15 +13,15 @@ def get_bags_from_mimic(
 
     Parameters
     ----------
-    labevents : str
+    labevents : str, default 'https://github.com/fvillena/matbio/blob/master/data/LABEVENTS.csv?raw=true'
         URL for the csv of the `LABEVENTS` MIMIC table
-    d_labitems : str
+    d_labitems : str, default 'https://raw.githubusercontent.com/fvillena/matbio/master/data/D_LABITEMS.csv'
         URL for the csv of the `D_LABEVENTS` MIMIC table
     
     Returns
     -------
-    list
-        A list of laboratory test bags.
+    list of list of str
+        A list of list of str laboratory test bags.
 
     """
     labevents = pd.read_csv(labevents)
@@ -36,20 +37,23 @@ def get_bags_from_mimic(
     return bags
 
 def cut_bag(bag: list) -> tuple:
-    """Cuts a laboratory test bag into differnt subsections.
+    """
+    Cuts a laboratory test bag into differnt subsections.
 
     From a laboratory test bag, this functions iterates over each element and in each
     element it creates a cutting point to separate the bag in two subsections.
 
     Parameters
     ----------
-    bag : list
+    bag : list of str
         List of laboratory tests.
     
     Returns
     -------
-    list
-        A tuple two lists containing the left and right cutted side.
+    x : list of str
+        Left side of the cutted bag
+    y : list of str
+        Right side of the cutted bag
     
     Examples
     --------
@@ -74,7 +78,8 @@ def cut_bag(bag: list) -> tuple:
     return (x,y)
 
 def make_supervised_dataset(bags: list) -> tuple:
-    """Constructs features and labels from a list of bags
+    """
+    Constructs features and labels from a list of bags.
     
     From a list of bags, this function iterates over each bag and cut the bag to create
     a features bag (left side of the cutted bag) and a labels bag (right side of the 
@@ -82,13 +87,15 @@ def make_supervised_dataset(bags: list) -> tuple:
 
     Parameters
     ----------
-    bags : list
-        List of laboratory tests.
+    bags : list of list of str
+        List of bags.
     
     Returns
     -------
-    tuple
-        A tuple containing a list of features and a list of label bags.
+    features : list of list of str
+        List of features.
+    labels : list of list of str
+        List of labels.
     
     Examples
     --------
