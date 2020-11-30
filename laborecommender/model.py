@@ -6,6 +6,11 @@ from . import features
 import collections
 import itertools
 
+def list_of_bags_to_set(bags):
+    return [item[0] for item in collections.Counter(itertools.chain.from_iterable(bags)).most_common()]
+def remove_items_from_bag(bag,banned_items):
+    return [item for item in bag if item not in banned_items]
+
 class NearestBags(sklearn.base.BaseEstimator, sklearn.base.ClassifierMixin):
     """
     Unsupervised learner for implementing neighbor bags searches.
@@ -60,10 +65,7 @@ class LaboRecommender():
     def predict(self, bags, n=5):
         self.n=n
         recommended_bag_ids = self.pipe.predict(bags)
-        recommendations = []
-        for i,row in enumerate(recommended_bag_ids):
-            row_bags = self.bags_[row]
-            recommendation = [item[0] for item in collections.Counter(itertools.chain.from_iterable(row_bags)).most_common()]
-            recommendation = [item for item in recommendation if item not in bags[i]][:self.n]
-            recommendations.append(recommendation)
+        recommended_bags = self.bags_[recommended_bag_ids]
+        recommendations = map(list_of_bags_to_set,recommended_bags)
+        recommendations = [remove_items_from_bag(recommendation,bag)[:self.n] for recommendation,bag in zip(recommendations,bags)]
         return recommendations
