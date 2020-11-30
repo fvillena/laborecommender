@@ -57,8 +57,9 @@ def cut_bag(bag: list) -> tuple:
     
     Examples
     --------
+    >>> import laborecommender.data
     >>> bag = ["a","b","c","d"]
-    >>> cut_bag(bag)
+    >>> laborecommender.data.cut_bag(bag)
     (
         [
             ['a'],              ['a', 'b'],     ['a', 'b', 'c']
@@ -99,8 +100,9 @@ def make_supervised_dataset(bags: list) -> tuple:
     
     Examples
     --------
+    >>> import laborecommender.data
     >>> bags = [["a","b","c"],["d","e","f"]]
-    >>> make_supervised_dataset(bags)
+    >>> laborecommender.data.make_supervised_dataset(bags)
     (
         [['a'],         ['a', 'b'],     ['d'],          ['d', 'e']],
         [['b', 'c'],    ['c'],          ['e', 'f'],     ['f']]

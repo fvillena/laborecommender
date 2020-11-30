@@ -17,8 +17,9 @@ class BagsVectorizer(sklearn.base.BaseEstimator, sklearn.base.TransformerMixin):
     
     Examples
     --------
+    >>> import laborecommender.features
     >>> bags = [["a","b","c"],["d","e","f"]]
-    >>> vectorizer = BagsVectorizer()
+    >>> vectorizer = laborecommender.features.BagsVectorizer()
     >>> vectorizer.fit(bags)
     >>> vectorizer.transform(bags)
     array([ [1., 1., 1., 0., 0., 0.],
