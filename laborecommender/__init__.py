@@ -1,0 +1,1 @@
+from laborecommender.model import LaboRecommender
