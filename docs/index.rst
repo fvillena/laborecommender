@@ -3,16 +3,20 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to SphinxDemo's documentation!
-======================================
+Welcome to laborecommender documentation!
+=========================================
 
 .. toctree::
-   :maxdepth: 3
-   :caption: Contents:
+   :maxdepth: 1
+   :hidden:
+   :caption: Getting Started
 
-Indices and tables
-==================
+   install
+   example
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: Documentation
+
+   api
