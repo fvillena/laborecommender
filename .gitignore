@@ -2,3 +2,6 @@ docs/make.bat
 docs/Makefile
 _build
 __pycache__
+/data
+/notebooks
+.vscode
