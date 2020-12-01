@@ -6,6 +6,10 @@
 Welcome to laborecommender documentation!
 =========================================
 
+Installation instructions are available in :ref:`install` and we recommend you to start with the `training example`_.
+
+.. _training example: training.ipynb
+
 .. toctree::
    :maxdepth: 1
    :hidden:
