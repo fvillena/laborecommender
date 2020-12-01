@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 def get_bags_from_mimic(
     labevents: str = "https://github.com/fvillena/matbio/blob/master/data/LABEVENTS.csv?raw=true", 
@@ -27,7 +28,7 @@ def get_bags_from_mimic(
     labevents = pd.read_csv(labevents)
     d_labitems = pd.read_csv(d_labitems)
     data = labevents.merge(d_labitems[d_labitems.fluid.isin(["Blood","Urine"])].dropna(subset=["loinc_code"]),how="inner",on="itemid")
-    data["instant"] = (pd.to_datetime(data.charttime).astype(int)/(10e6*60*10)).astype(int)
+    data["instant"] = (pd.to_datetime(data.charttime).astype(np.int64)/(10e6*60*10)).astype(np.int64)
     bags = []
     for _, group in data.groupby(by=["subject_id","instant"]):
         bag = tuple(set(group.label.to_list()))
