@@ -12,7 +12,7 @@ Welcome to laborecommender documentation!
    :caption: Getting Started
 
    install
-   example
+   training.ipynb
 
 .. toctree::
    :maxdepth: 1

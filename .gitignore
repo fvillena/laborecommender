@@ -5,3 +5,4 @@ __pycache__
 /data
 /notebooks
 .vscode
+.ipynb_checkpoints
