@@ -13,6 +13,7 @@ Welcome to laborecommender documentation!
 
    install
    training.ipynb
+   validation.ipynb
 
 .. toctree::
    :maxdepth: 1
