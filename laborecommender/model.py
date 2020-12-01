@@ -205,6 +205,7 @@ class LaboRecommender():
             Number of tests to return.
         
         Returns
+        -------
         list of list str
             List of lists of most likely to select laboratory tests.
 
